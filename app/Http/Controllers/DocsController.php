@@ -24,7 +24,7 @@ class DocsController extends Controller {
 	 */
 	public function create()
 	{
-		return view('admin.create_doc');
+		return view('admin.doc.create_doc');
 	}
 
 	/**

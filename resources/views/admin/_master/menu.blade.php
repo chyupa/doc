@@ -15,6 +15,13 @@
                 {!! link_to_route('admin.get.create.category', 'Create Category', [], ['class'=>'block']) !!}
             </div>
         </li>
+        <li>
+            <a>Docs</a>
+            <div class="dropdown-menu submenu">
+                {!! link_to_route('admin.doc.index', 'Show all Docs', [], ['class'=>'block']) !!}
+                {!! link_to_route('admin.doc.create', 'Create Category', [], ['class'=>'block']) !!}
+            </div>
+        </li>
         <li>{!! link_to_route('auth.get.logout', 'Logout') !!}</li>
     </ul>
 </nav>

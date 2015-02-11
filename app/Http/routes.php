@@ -39,10 +39,9 @@ Route::group(['prefix'=>'admin', 'middleware'=>'admin'], function(){
 		Route::get('edit/{category}', ['as'=>'admin.get.edit.category', 'uses'=>'CategoryController@edit'] );
 		Route::patch('edit/{category}', ['as'=>'admin.post.edit.category', 'uses'=>'CategoryController@update'] );
 
-		Route::delete('delete/{$category}', ['as'=>'admin.post.delete.category', 'uses'=>'CategoryController@destroy']);
-
+		Route::delete('delete/{category}', ['as'=>'admin.post.delete.category', 'uses'=>'CategoryController@destroy']);
 	});
-	Route::controller('docs','DocsController');
+	Route::resource('doc','DocsController');
 });
 
 Route::get('dashboard', ['as'=>'user.get.dashboard', 'uses'=>'UserController@getDashboard']);

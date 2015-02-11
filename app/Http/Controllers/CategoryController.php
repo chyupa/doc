@@ -16,7 +16,7 @@ class CategoryController extends Controller {
 	public function index()
 	{
 		$categories = Category::all();
-		return view('admin.categories', compact('categories'));
+		return view('admin.category.categories', compact('categories'));
 	}
 
 	/**
@@ -26,7 +26,7 @@ class CategoryController extends Controller {
 	 */
 	public function create()
 	{
-		return view('admin.create_category');
+		return view('admin.category.create_category');
 	}
 
 	/**
@@ -59,7 +59,7 @@ class CategoryController extends Controller {
 	 */
 	public function edit(Category $category)
 	{
-		return view('admin.edit_category', compact('category'));
+		return view('admin.category.edit_category', compact('category'));
 	}
 
 	/**
@@ -83,9 +83,10 @@ class CategoryController extends Controller {
 	 * @return Response
 	 * @internal param int $id
 	 */
-	public function destroy($id)
+	public function destroy(Category $category)
 	{
-		dd($id);
+		$category->delete();
+		return redirect()->route('admin.get.categories');
 	}
 
 }

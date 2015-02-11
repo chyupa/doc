@@ -22,7 +22,7 @@ class AdminDashboardController extends Controller {
     $roles = ['' => 'Please select a role'];
     $roles += \Doc\UserRoles::lists('name', 'id');
 
-    return view('admin.create_user', compact('roles'));
+    return view('admin.user.create_user', compact('roles'));
   }
   public function postCreateUser( CreateUserRequest $request)
   {
@@ -35,7 +35,7 @@ class AdminDashboardController extends Controller {
   public function showUsers()
   {
     $users = User::all();
-    return view('admin.users', compact('users'));
+    return view('admin.user.users', compact('users'));
   }
 
   public function getEditUser( User $user )
@@ -43,7 +43,7 @@ class AdminDashboardController extends Controller {
     $roles = ['' => 'Please select a role'];
     $roles += \Doc\UserRoles::lists('name', 'id');
 
-    return view('admin.edit_user', compact('user', 'roles'));
+    return view('admin.user.edit_user', compact('user', 'roles'));
   }
 
   public function postEditUser( User $user, EditUserRequest $request )
