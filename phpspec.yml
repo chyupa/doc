@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Doc
+        psr4_prefix: Doc
+        src_path: app
