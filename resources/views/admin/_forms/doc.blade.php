@@ -9,11 +9,19 @@
 <div class="form-group">
     @if( count( $categories ) )
         <div class="col-md-offset-4">
-            @foreach($categories as $cat)
-                <label class="checkbox-inline">
-                    {!! Form::checkbox('cat[]', $cat->id) !!} {{$cat->name}}
-                </label>
-            @endforeach
+            @if(isset($doc_cat))
+                @foreach($categories as $cat)
+                    <label class="checkbox-inline">
+                        {!! Form::checkbox('cat[]', $cat->id, $doc_cat->contains($cat->id) ? true : false ) !!} {{$cat->name}}
+                    </label>
+                @endforeach
+            @else
+                @foreach($categories as $cat)
+                    <label class="checkbox-inline">
+                        {!! Form::checkbox('cat[]', $cat->id ) !!} {{$cat->name}}
+                    </label>
+                @endforeach
+            @endif
         </div>
     @endif
 </div>

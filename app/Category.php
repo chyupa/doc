@@ -10,6 +10,6 @@ class Category extends Model {
 
   public function doc()
   {
-    return $this->belongsToMany('Doc', 'doc_cats_linker', 'doc_id');
+    return $this->belongsToMany('Doc', 'doc_cats_linker');
   }
 }
