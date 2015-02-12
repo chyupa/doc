@@ -9,7 +9,7 @@ class UserTableSeeder extends Seeder {
     {
         DB::table('users')->delete();
 
-        User::create(array('name'=>'Razvan Toader', 'role_id'=> 1 , 'username' => 'admin', 'password' => bcrypt('parola')));
+        User::create(array('name'=>'Razvan Toader', 'role_id'=> 1 , 'username' => 'admin', 'password' => 'parola'));
     }
 
 }

@@ -16,8 +16,6 @@ class CreateDefaultDocs extends Migration {
 			$table->increments('id');
 			$table->string('name')->unique();
 			$table->longText('doc_source');
-			$table->string('categories');
-			$table->int('no_of_vars');
 			$table->timestamps();
 		});
 	}
@@ -29,7 +27,7 @@ class CreateDefaultDocs extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('default_docs');
 	}
 
 }

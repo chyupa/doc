@@ -2,7 +2,7 @@
 
 use Doc\Http\Requests\Request;
 
-class CreateCategoryRequest extends Request {
+class CreateDocRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -12,7 +12,7 @@ class CreateCategoryRequest extends Request {
 	public function authorize()
 	{
 		/**
-		 * TODO: check if user is admin
+		 * TODO: check if the user has permission
 		 */
 		return true;
 	}
@@ -25,7 +25,12 @@ class CreateCategoryRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name' => 'required|max:255|unique:doc_cats'
+			'name' => 'required|max:255',
+			'doc_source' => 'required',
+			'cat' => 'required|array',
+			'no_of_vars' => 'required',
+			'input' => 'required|array'
+//			'input.1' => 'required|array'
 		];
 	}
 

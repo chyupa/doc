@@ -4,8 +4,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model {
 
-  protected $table = 'categories';
+  protected $table = 'doc_cats';
 
 	protected $fillable = ['name'];
 
+  public function doc()
+  {
+    return $this->belongsToMany('Doc', 'doc_cats_linker', 'doc_id');
+  }
 }
