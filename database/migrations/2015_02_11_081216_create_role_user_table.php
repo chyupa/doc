@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDefaultDocs extends Migration {
+class CreateRoleUserTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,9 @@ class CreateDefaultDocs extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('default_docs', function(Blueprint $table){
+		Schema::create('roles', function( Blueprint $table ){
 			$table->increments('id');
 			$table->string('name')->unique();
-			$table->longText('doc_source');
 			$table->timestamps();
 		});
 	}
@@ -27,7 +26,7 @@ class CreateDefaultDocs extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('default_docs');
+		Schema::drop('roles');
 	}
 
 }

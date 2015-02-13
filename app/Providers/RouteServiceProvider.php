@@ -26,7 +26,8 @@ class RouteServiceProvider extends ServiceProvider {
 
 		$router->model('category', 'Doc\Category');
 		$router->model('user', 'Doc\User');
-		$router->model('doc', 'Doc\Doc');
+		$router->model('doc', 'Doc\Document');
+		$router->model('role', 'Doc\Role');
 	}
 
 	/**

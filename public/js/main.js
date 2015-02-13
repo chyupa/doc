@@ -1,22 +1,19 @@
 $(document).ready(function(){
-   //$('#doc_source').ckeditor();
 
-   $('.show-vars').click(function(){
-      var no_of_vars = $('#no_of_vars').val();
-      if( isNaN(no_of_vars) )
-         return false;
+   $('.add-vars').click(function(){
+      var no_of_vars = parseInt( $(this).siblings('#no_of_vars').val() );
+
+      var input_name = "input["+(no_of_vars+1)+"][name]";
+      var input_var = "input["+(no_of_vars+1)+"][var]";
 
       var vars = '';
-      for( var i = 1; i <= no_of_vars; i++ )
-      {
-         var label_name = 'input['+i+'][]';
-         var code_name = 'input['+i+'][]';
-         vars += '<br>';
-         vars += '<label>Input Label '+i+'</label>';
-         vars += '<input type="text" name="'+label_name+'" class="form-control">';
-         vars += '<label>Code '+i+'</label>';
-         vars += '<input type="text" name="'+code_name+'" class="form-control">';
-      }
-      $(this).after(vars);
+      vars += '<br>';
+      vars += '<label>Input Label '+(no_of_vars+1)+'</label>';
+      vars += '<input type="text" name='+input_name+' class="form-control">';
+      vars += '<label>Code '+(no_of_vars+1)+'</label>';
+      vars += '<input type="text" name='+input_var+' class="form-control">';
+
+      $(this).before(vars);
+      $(this).siblings('#no_of_vars').val(no_of_vars+1);
    });
 });

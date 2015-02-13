@@ -41,7 +41,13 @@ Route::group(['prefix'=>'admin', 'middleware'=>'admin'], function(){
 
 		Route::delete('delete/{category}', ['as'=>'admin.post.delete.category', 'uses'=>'CategoryController@destroy']);
 	});
-	Route::resource('doc','DocsController');
+	Route::resource('doc','DocumentController');
+
+	Route::resource('role', 'RoleController');
+
+	Route::group(['prefix'=>'pdf'], function(){
+		Route::get('/', ['as'=>'admin.pdf.index', 'uses'=>'GeneratePDFController@index']);
+	});
 });
 
 Route::get('dashboard', ['as'=>'user.get.dashboard', 'uses'=>'UserController@getDashboard']);

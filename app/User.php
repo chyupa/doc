@@ -46,9 +46,31 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			return false;
 	}
 
+//	public function role()
+//	{
+//		return $this->belongsTo('Doc\UserRoles');
+//	}
+//
+//	public function categories()
+//	{
+////		return $this->belongsToMany('Doc\Category', 'user_doc_cat_linker', 'user_id', 'cat_id');
+//		return $this->hasMany('Doc\Category');
+//	}
+//
+//	public function docs()
+//	{
+////		return $this->hasManyThrough('Doc\Doc', 'Doc\Category', 'id', 'id');
+//	}
+
 	public function role()
 	{
-		return $this->belongsTo('Doc\UserRoles');
+		return $this->belongsTo('Doc\Role');
 	}
+
+	public function documents()
+	{
+		return $this->role->belongsToMany('Doc\Document');
+	}
+
 
 }

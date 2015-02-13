@@ -4,6 +4,7 @@ use Doc\Category;
 use Doc\Http\Requests;
 use Doc\Http\Controllers\Controller;
 
+use Doc\Http\Requests\CreateCategoryRequest;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller {
@@ -32,9 +33,10 @@ class CategoryController extends Controller {
 	/**
 	 * Store a newly created resource in storage.
 	 *
+	 * @param CreateCategoryRequest $request
 	 * @return Response
 	 */
-	public function store( Requests\CreateCategoryRequest $request )
+	public function store( CreateCategoryRequest $request )
 	{
 		Category::create($request->all());
 		return redirect()->route('admin.get.categories');
@@ -66,10 +68,11 @@ class CategoryController extends Controller {
 	 * Update the specified resource in storage.
 	 *
 	 * @param Category $category
+	 * @param CreateCategoryRequest $request
 	 * @return Response
 	 * @internal param int $id
 	 */
-	public function update(Category $category, Requests\CreateCategoryRequest $request)
+	public function update(Category $category, CreateCategoryRequest $request)
 	{
 		$category->update($request->all());
 

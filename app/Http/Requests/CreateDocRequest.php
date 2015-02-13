@@ -28,9 +28,7 @@ class CreateDocRequest extends Request {
 			'name' => 'required|max:255',
 			'doc_source' => 'required',
 			'cat' => 'required|array',
-			'no_of_vars' => 'required',
 			'input' => 'required|array'
-//			'input.1' => 'required|array'
 		];
 	}
 

@@ -2,7 +2,7 @@
 
 use Doc\Http\Requests\Request;
 
-class CreateUserRequest extends Request {
+class CreateRoleRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -11,9 +11,6 @@ class CreateUserRequest extends Request {
 	 */
 	public function authorize()
 	{
-		/**
-		 * TODO: check if user is admin
-		 */
 		return true;
 	}
 
@@ -25,10 +22,7 @@ class CreateUserRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name' => 'required|max:255',
-			'username' => 'required|unique:users',
-			'password' => 'required|min:6',
-			'role_id' => 'required',
+			'name' => 'required|max:255|unique:roles',
 			'cat' => 'required|array'
 		];
 	}

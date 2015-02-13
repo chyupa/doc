@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDocVarsTable extends Migration {
+class CreateVariablesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,8 +12,9 @@ class CreateDocVarsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('doc_vars', function(Blueprint $table){
+		Schema::create('variables', function(Blueprint $table){
 			$table->increments('id');
+			$table->integer('document_id')->unsigned();
 			$table->string('name');
 			$table->string('var');
 			$table->timestamps();
@@ -27,7 +28,7 @@ class CreateDocVarsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('doc_vars');
+		Schema::drop('vars');
 	}
 
 }

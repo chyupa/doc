@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDocCatsTable extends Migration {
+class CreateCategoriesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateDocCatsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('doc_cats', function(Blueprint $table){
+		Schema::create('categories', function(Blueprint $table){
 			$table->increments('id');
 			$table->string('name');
 			$table->timestamps();
@@ -26,7 +26,7 @@ class CreateDocCatsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('doc_cats');
+		Schema::drop('categories');
 	}
 
 }

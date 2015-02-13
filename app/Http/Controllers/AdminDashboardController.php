@@ -1,8 +1,10 @@
 <?php namespace Doc\Http\Controllers;
 
+use Doc\Category;
 use Doc\Http\Requests\CreateUserRequest;
 use Doc\Http\Requests\EditUserRequest;
 use Doc\Http\Requests\Request;
+use Doc\Role;
 use Doc\User;
 
 class AdminDashboardController extends Controller {
@@ -19,40 +21,53 @@ class AdminDashboardController extends Controller {
 
   public function getCreateUser()
   {
+    $categories = Category::all();
     $roles = ['' => 'Please select a role'];
-    $roles += \Doc\UserRoles::lists('name', 'id');
+    $roles += Role::lists('name', 'id');
 
-    return view('admin.user.create_user', compact('roles'));
+    return view('admin.user.create_user', compact('roles', 'categories'));
   }
   public function postCreateUser( CreateUserRequest $request)
   {
-    User::create($request->all());
+//    dd($request->all());
 
-    return redirect()->route('admin.get.dashboard');
+    $user = User::create($request->all());
+
+    $categories = $request->get('cat');
+
+    foreach($categories as $cat)
+    {
+      $user->categories()->attach($cat);
+    }
+
+    return redirect()->route('admin.get.users');
 
   }
 
   public function showUsers()
   {
-    $users = User::all();
+    $users = User::where('role_id', '<>', 1)->get();
     return view('admin.user.users', compact('users'));
   }
 
   public function getEditUser( User $user )
   {
     $roles = ['' => 'Please select a role'];
-    $roles += \Doc\UserRoles::lists('name', 'id');
+    $roles += Role::lists('name', 'id');
 
     return view('admin.user.edit_user', compact('user', 'roles'));
   }
 
   public function postEditUser( User $user, EditUserRequest $request )
   {
+    $args = $request->all();
     /**
-     * TODO: don't update the password field or don't show it in the form
+     * if the password field is null then don't change it
      */
-    $user->update( $request->all() );
-//    dd($request->all());
+    if( $args['password'] == '' )
+      unset( $args['password'] );
+
+    $user->update( $args );
     return redirect()->route('admin.get.users');
   }
 

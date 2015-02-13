@@ -1,7 +1,7 @@
 <?php
   use Illuminate\Database\Seeder;
   use Illuminate\Database\Eloquent\Model;
-  use Doc\UserRoles;
+  use Doc\Role;
 
   class UserRolesTableSeeder extends Seeder {
 
@@ -9,8 +9,8 @@
     {
       DB::table('user_roles')->delete();
 
-      UserRoles::create(['name'=>'admin']);
-      UserRoles::create(['name'=>'user']);
+      Role::create(['name'=>'admin']);
+      Role::create(['name'=>'user']);
     }
 
   }
