@@ -59,9 +59,9 @@
 @endif
 
 <div class="form-group">
-    {!! Form::label('doc_source', 'Body', ['class'=>'col-md-4 control-label']) !!}
+    {!! Form::label('body', 'Body', ['class'=>'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::textarea( 'doc_source', old('doc_source'), ['class'=>'form-control'] ) !!}
+        {!! Form::textarea( 'body', old('body'), ['class'=>'form-control'] ) !!}
     </div>
 </div>
 

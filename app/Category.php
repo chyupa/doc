@@ -18,12 +18,13 @@ class Category extends Model {
 //    return $this->belongsToMany('Doc\User', 'user_doc_cat_linker', 'cat_id', 'user_id');
 //  }
 
-  public function roles()
+  public function user()
   {
-    return $this->belongsToMany('Doc\Role');
+    return $this->belongsTo('Doc\User');
   }
 
-  public function document()
+
+  public function documents()
   {
     return $this->belongsToMany('Doc\Document');
   }

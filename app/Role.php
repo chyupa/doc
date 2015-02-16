@@ -11,19 +11,9 @@ class Role extends Model {
 //    return $this->hasMany('Doc\User');
 //  }
 
-  public function user()
+  public function users()
   {
-    return $this->belongsTo('Doc\User');
-  }
-//
-  public function categories()
-  {
-    return $this->belongsToMany('Doc\Category');
-  }
-
-  public function documents()
-  {
-    return $this->belongsToMany('Doc\Document');
+    return $this->hasMany('Doc\User');
   }
 
 }

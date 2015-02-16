@@ -47,6 +47,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>'admin'], function(){
 
 	Route::group(['prefix'=>'pdf'], function(){
 		Route::get('/', ['as'=>'admin.pdf.index', 'uses'=>'GeneratePDFController@index']);
+    Route::get('/{user}/generate/{doc}', ['as' => 'admin.get.pdf.generate', 'uses'=>'GeneratePDFController@getGenerate']);
+    Route::post('/{user}/generate/{doc}', ['as' => 'admin.post.pdf.generate', 'uses'=>'GeneratePDFController@postGenerate']);
+
+    Route::get('/get/document/{doc}', ['as'=>'admin.ajax.get.document', 'uses'=>'AjaxController@getDocument']);
 	});
 });
 

@@ -16,4 +16,18 @@ $(document).ready(function(){
       $(this).before(vars);
       $(this).siblings('#no_of_vars').val(no_of_vars+1);
    });
+
+    if( typeof $('#doc_id').val() !== 'undefined' )
+    {
+        var doc_id = $('#doc_id').val();
+        $.ajax({
+            url: '/admin/pdf/get/document/' + doc_id,
+            type: 'get',
+            success: function (data) {
+                window.a = data;
+                $('.show-editor').ckeditor();
+                $('.show-editor').val(data.doc_body);
+            }
+        });
+    }
 });

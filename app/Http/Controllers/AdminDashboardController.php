@@ -21,7 +21,8 @@ class AdminDashboardController extends Controller {
 
   public function getCreateUser()
   {
-    $categories = Category::all();
+    $categories = ['' => 'Please select a category'];
+    $categories += Category::lists('name', 'id');
     $roles = ['' => 'Please select a role'];
     $roles += Role::lists('name', 'id');
 
@@ -31,14 +32,14 @@ class AdminDashboardController extends Controller {
   {
 //    dd($request->all());
 
-    $user = User::create($request->all());
+    User::create($request->all());
 
-    $categories = $request->get('cat');
-
-    foreach($categories as $cat)
-    {
-      $user->categories()->attach($cat);
-    }
+//    $categories = $request->get('cat');
+//
+//    foreach($categories as $cat)
+//    {
+//      $user->categories()->attach($cat);
+//    }
 
     return redirect()->route('admin.get.users');
 
@@ -52,10 +53,13 @@ class AdminDashboardController extends Controller {
 
   public function getEditUser( User $user )
   {
+    $categories = ['' => 'Please select a category'];
+    $categories += Category::lists('name', 'id');
+
     $roles = ['' => 'Please select a role'];
     $roles += Role::lists('name', 'id');
 
-    return view('admin.user.edit_user', compact('user', 'roles'));
+    return view('admin.user.edit_user', compact('user', 'roles', 'categories'));
   }
 
   public function postEditUser( User $user, EditUserRequest $request )

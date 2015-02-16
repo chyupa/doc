@@ -29,8 +29,7 @@ class RoleController extends Controller {
 	 */
 	public function create()
 	{
-		$categories = Category::all();
-		return view('admin.role.create_role', compact('categories'));
+		return view('admin.role.create_role');
 	}
 
 	/**
@@ -41,14 +40,9 @@ class RoleController extends Controller {
 	 */
 	public function store( CreateRoleRequest $request)
 	{
-//		dd($request->all());
-		$role = Role::create($request->all());
+		Role::create($request->all());
 
-		$categories = $request->get('cat');
-		foreach($categories as $cat)
-		{
-			$role->categories()->attach($cat);
-		}
+    return redirect()->route('admin.role.index');
 	}
 
 	/**
@@ -71,8 +65,7 @@ class RoleController extends Controller {
 	 */
 	public function edit(Role $role)
 	{
-		$categories = Category::all();
-		return view('admin.role.edit_role', compact('role', 'categories'));
+		return view('admin.role.edit_role', compact('role'));
 	}
 
 	/**
@@ -85,18 +78,24 @@ class RoleController extends Controller {
 	 */
 	public function update(Role $role, CreateRoleRequest $request)
 	{
-		dd($role);
+		$role->update( $request->all() );
+
+    return redirect()->route('admin.role.index');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param Role $role
+   * @return Response
+   * @internal param int $id
+   */
+	public function destroy(Role $role)
 	{
-		//
+//    dd($role);
+		$role->delete();
+
+    return redirect()->route('admin.role.index');
 	}
 
 }

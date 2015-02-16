@@ -21,20 +21,9 @@
 </div>
 
 <div class="form-group">
-    <div class="col-md-offset-4">
-        @if(isset($user_cat))
-            @foreach($categories as $cat)
-                <label class="checkbox-inline">
-                    {!! Form::checkbox('cat[]', $cat->id, $doc_cat->contains($cat->id) ? true : false ) !!} {{$cat->name}}
-                </label>
-            @endforeach
-        @else
-            @foreach($categories as $cat)
-                <label class="checkbox-inline">
-                    {!! Form::checkbox('cat[]', $cat->id ) !!} {{$cat->name}}
-                </label>
-            @endforeach
-        @endif
+    {!! Form::label('role_id', 'Category', ['class'=>'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::select('category_id', $categories, null, ['class'=>'form-control']) !!}
     </div>
 </div>
 

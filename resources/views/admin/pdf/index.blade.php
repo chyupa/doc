@@ -5,8 +5,10 @@
         @foreach($users as $user)
           <li>
               {{$user->name}} - {{$user->username}} -
-              @foreach($user->docs as $doc)
-                  {{ $doc->name  }}
+              @foreach($user->category->documents as $doc)
+                  <br>
+                  {!! link_to_route( 'admin.get.pdf.generate', 'Generate pdf from '.$doc->name, [ 'doc'=>$doc->id, 'user' => $user->id ] )  !!}
+
               @endforeach
           </li>
         @endforeach

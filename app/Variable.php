@@ -4,14 +4,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Variable extends Model {
 
-	protected $table = 'vars';
+	protected $table = 'variables';
 
-	protected $fillable = ['name', 'var'];
+	protected $fillable = ['name', 'var', 'document_id'];
 
-//	public function doc()
-//	{
-//		return $this->belongsToMany('Doc\Doc', 'doc_vars_linker', 'var_id', 'doc_id');
-//	}
 	public function document()
 	{
 		return $this->belongsTo('Doc\Document');

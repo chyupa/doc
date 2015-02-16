@@ -2,7 +2,7 @@
 
 use Doc\Http\Requests\Request;
 
-class CreateDocRequest extends Request {
+class GeneratePDFRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -11,9 +11,6 @@ class CreateDocRequest extends Request {
 	 */
 	public function authorize()
 	{
-		/**
-		 * TODO: check if the user has permission
-		 */
 		return true;
 	}
 
@@ -25,10 +22,8 @@ class CreateDocRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name' => 'required|max:255',
-			'body' => 'required',
-			'cat' => 'required|array',
-			'input' => 'required|array'
+      'input' => 'array|required',
+      'body' => 'required'
 		];
 	}
 

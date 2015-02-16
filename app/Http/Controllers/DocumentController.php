@@ -54,7 +54,7 @@ class DocumentController extends Controller {
 				"input.{$key}.var" => 'required'
 			]);
 		}
-//dd();
+
 		$doc = Document::create($request->all());
 
 		$categories = $request->get('cat');
@@ -63,14 +63,13 @@ class DocumentController extends Controller {
 		{
 			$doc->categories()->attach($cat);
 		}
-		$doc_inputs = [];
+
 		foreach($inputs as $input)
 		{
-			$doc_var = Variable::create($input);
-			$doc_inputs[] = $doc_var->id;
-		}
+      $input['document_id'] = $doc->id;
+			Variable::create($input);
 
-		$doc->vars()->attach($doc_inputs);
+		}
 
 		return redirect()->route('admin.doc.index');
 	}
@@ -97,6 +96,7 @@ class DocumentController extends Controller {
 	 */
 	public function edit(Document $doc)
 	{
+//    dd($doc);
 		$categories = Category::all();
 		$doc_cat = $doc->categories;
 		$no_of_vars = $doc->vars()->count();
@@ -130,17 +130,14 @@ class DocumentController extends Controller {
 		{
 			$doc->categories()->attach($cat);
 		}
+//    dd($doc->vars()->count());
 		$doc->vars()->delete();
-		$doc->vars()->detach();
 
-		$doc_inputs = [];
 		foreach($inputs as $input)
 		{
-			$doc_var = Variable::create($input);
-			$doc_inputs[] = $doc_var->id;
+      $input['document_id'] = $doc->id;
+			Variable::create($input);
 		}
-
-		$doc->vars()->attach($doc_inputs);
 
 		$doc->update($request->all());
 

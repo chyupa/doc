@@ -29,7 +29,7 @@ class CreateUserRequest extends Request {
 			'username' => 'required|unique:users',
 			'password' => 'required|min:6',
 			'role_id' => 'required',
-			'cat' => 'required|array'
+			'category_id' => 'required'
 		];
 	}
 

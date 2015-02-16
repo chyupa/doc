@@ -16,6 +16,9 @@ class CreateUsersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('role_id')->unsigned();
+//			$table->foreign('role_id')->references('id')->on('roles');
+			$table->integer('category_id')->unsigned();
+//			$table->foreign('category_id')->references('id')->on('categories');
 			$table->string('name');
 			$table->string('username')->unique();
 			$table->string('password', 60);

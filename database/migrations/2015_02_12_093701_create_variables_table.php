@@ -15,6 +15,7 @@ class CreateVariablesTable extends Migration {
 		Schema::create('variables', function(Blueprint $table){
 			$table->increments('id');
 			$table->integer('document_id')->unsigned();
+//			$table->foreign('document_id')->references('id')->on('documents');
 			$table->string('name');
 			$table->string('var');
 			$table->timestamps();

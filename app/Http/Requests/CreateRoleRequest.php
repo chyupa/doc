@@ -23,7 +23,6 @@ class CreateRoleRequest extends Request {
 	{
 		return [
 			'name' => 'required|max:255|unique:roles',
-			'cat' => 'required|array'
 		];
 	}
 
