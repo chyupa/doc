@@ -8,7 +8,6 @@ use Doc\Http\Requests;
 use Doc\Http\Requests\GeneratePDFRequest;
 use Doc\User;
 use Doc\Variable;
-use Illuminate\Support\Facades\App;
 
 class GeneratePDFController extends Controller {
 
@@ -49,12 +48,12 @@ class GeneratePDFController extends Controller {
       $replace_what[] = $var->var;
       $replace_with[] = $val;
     }
-//    dd($replace_what);
+
     $html = str_replace( $replace_what, $replace_with, $request->body );
 
-    PDF::loadHTML($html)->setPaper('a4')->setOrientation('landscape')->setWarnings(false)->save('myfile.pdf');
-
-    return $pdf->download('test.pdf');
+    $pdf = \App::make('dompdf');
+    $pdf->loadHTML($html);
+    return $pdf->download($doc->name . Carbon::now() . '.pdf');
 
   }
 
