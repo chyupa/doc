@@ -55,6 +55,10 @@ class GeneratePDFController extends Controller {
     $pdf->loadHTML($html);
     return $pdf->download($doc->name . Carbon::now() . '.pdf');
 
+    /**
+     * test test
+     */
+
   }
 
 }
